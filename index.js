@@ -131,6 +131,38 @@ musica.borrar = function(id) {
 }
 musica.borrar(20)
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Manejo de errores con try y catch
+/* La declaración try-catch debe ejecutarse solo en las secciones de código
+donde sospecha que pueden ocurrir errores, y debido a la abrumadora cantidad
+de circunstancias posibles, no puede verificar completamente si se producirá
+un error o cuándo lo hará. En este último caso, sería apropiado usar try-catch. */
+
+try {
+    console.log('try permite probar un bloque de código en busca de errores.')
+    llamandoAunaFuncionDeterminada();
+} catch (error) {
+    console.log('catch permite manejar el error, en este caso deberia decir que la funcion llamada en try no esta definida: ')
+    console.log('error: ' + error);
+} finally {
+    console.log('finally permite ejecutar código, después de intentar y atrapar, independientemente del resultado (es decir, si hay o no error).')
+}
+
+obtenerClientes();
+
+function obtenerClientes() {
+    console.log('Descargando');
+
+    setTimeout( function() {
+        console.log('Descarga Completada')
+    }, 3000);
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
