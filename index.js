@@ -159,9 +159,84 @@ function obtenerClientes() {
     }, 3000);
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ https://openwebinars.net/blog/errores-comunes-en-javascript/
+ */
+//Creando Objetos y la palabra this:
+//En JS, this se establece en tiempo de ejecucion
+
+//Object literal
+//this -> importante para poder acceder a los atributos/propiedades de un objeto
+//this -> es una referencia al objeto desde el que se llama la funcion
+
+const cliente = {
+    nombre: 'Juan',
+    saldo: 500,
+    tipo: 'Normal',
+    tipoCliente: function() {
+        let tipo;
+        if (this.saldo >= 5000) {
+            tipo = 'Premium'
+        } else if(this.saldo >= 1000) {
+            tipo = 'Gold'            
+        } else {
+            tipo = 'Normal'
+        }
+
+        return tipo;
+    }
+}
+
+console.log(cliente.tipoCliente())
+
+//Método alternativo con paso de parametros
+/* http://www.etnassoft.com/2012/01/12/el-valor-de-this-en-javascript-como-manejarlo-correctamente/ */
+
+function MiCliente (nombre, saldo) {
+    this.nombre = nombre;
+    this.saldo = saldo;
+    this.tipo = function(edad) {
+        let tipo;
+        if (this.saldo >= 5000) {
+            tipo = 'Premium'
+        } else if(this.saldo >= 1000) {
+            tipo = 'Gold'            
+        } else {
+            tipo = 'Normal'
+        }
+
+        return tipo;
+    }
+}
+
+const persona2 = new MiCliente('Jose', 5000);
+const persona3 = new MiCliente('Fersita', 2500);
+
+console.log(persona2);
+console.log(`persona3: ${persona3.tipo()}`);
+
+//otra practica sobre this
+function test(){
+  console.log( this === window);
+}
+
+test(); // true
+
+console.log( this === window );  // true
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
