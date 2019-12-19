@@ -227,6 +227,49 @@ console.log( this === window );  // true
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Prototypes
+/*En lo que a herencia se refiere, JavaScript sólo tiene una estructura: objetos. 
+Cada objeto tiene una propiedad privada (referida como su [[Prototype]]) que mantiene 
+un enlace a otro objeto llamado su prototipo. Ese objeto prototipo tiene su propio prototipo, 
+y así sucesivamente hasta que se alcanza un objeto cuyo prototipo es null. Por definición, 
+null no tiene prototipo, y actúa como el enlace final de esta cadena de prototipos.*/
+
+function LiverpoolCliente (nombre, saldo) {
+    this.nombre = nombre;
+    this.saldo = saldo;
+}
+
+LiverpoolCliente.prototype.tipoClienteLiverpool = function() {
+    let tipo;
+    if (this.saldo >= 5000) {
+        tipo = 'Premium';
+    } else if(this.saldo >= 1000) {
+        tipo = 'Gold';            
+    } else {
+        tipo = 'Normal';
+    }
+
+    return tipo;
+}
+
+LiverpoolCliente.prototype.saldoActual = function () {
+    return `Hola: ${this.nombre}, tu saldo actual es de: ${this.saldo}`
+}
+
+//Retirar saldo
+LiverpoolCliente.prototype.retirarSaldo = function (cantidadDeRetiro) {
+    return this.saldo -= cantidadDeRetiro;
+}
+
+
+const clienteLiverpool1 = new LiverpoolCliente('Vic', 1000)
+console.log(clienteLiverpool1)
+console.log(`Nommbre: ${clienteLiverpool1.nombre}, Tipo: ${clienteLiverpool1.tipoClienteLiverpool()}`)
+
+//Ejecutando retiro
+clienteLiverpool1.retirarSaldo(100);
+console.log(clienteLiverpool1.saldoActual())
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
