@@ -272,7 +272,35 @@ console.log(clienteLiverpool1.saldoActual())
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Clases ECMASCRIPT6
+//Clases ECMASCRIPT6 
+//y atributos estaticos -> usados cuando no se requiere crear una nueva instancia, unicamente se quiere
+// acceder a una propiedad o metodo de la clase, pasando unicamente el <nombre de la clase>.<el metodo estatico>
+
+class ClienteES6 {
+    constructor (nameES6, apellidoES6, saldoES6) {
+        this.nameES6 = nameES6;
+        this.apellidoES6 = apellidoES6;
+        this.saldoES6 = saldoES6;
+    }
+
+    imprimirSaldo() {
+        return `Hola ${this.nameES6}, tu saldo actual es de: ${this.saldoES6}`;
+    }
+
+    //atributo estatico
+    static saludarES6 (nameSaludo) {
+        this.nameSaludo = nameSaludo;
+        return `Bienvenido a tu cajero ${this.nameSaludo}`;
+    }
+}
+
+const cliententeES6 = new ClienteES6('VictorES6', 'TorresES6', 0);
+console.log(cliententeES6.imprimirSaldo());
+
+//probando atributo estatico
+//console.log(cliententeES6.saldoES6()); // -> error
+console.log(ClienteES6.saludarES6('VicES6')); // -> error
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
