@@ -277,14 +277,14 @@ console.log(clienteLiverpool1.saldoActual())
 // acceder a una propiedad o metodo de la clase, pasando unicamente el <nombre de la clase>.<el metodo estatico>
 
 class ClienteES6 {
-    constructor (nameES6, apellidoES6, saldoES6) {
-        this.nameES6 = nameES6;
+    constructor (nombreES6, apellidoES6, saldoES6) {
+        this.nombreES6 = nombreES6;
         this.apellidoES6 = apellidoES6;
         this.saldoES6 = saldoES6;
     }
 
     imprimirSaldo() {
-        return `Hola ${this.nameES6}, tu saldo actual es de: ${this.saldoES6}`;
+        return `Hola ${this.nombreES6}, tu saldo actual es de: ${this.saldoES6}`;
     }
 
     //atributo estatico
@@ -299,10 +299,45 @@ console.log(cliententeES6.imprimirSaldo());
 
 //probando atributo estatico
 //console.log(cliententeES6.saldoES6()); // -> error
-console.log(ClienteES6.saludarES6('VicES6')); // -> error
+console.log(ClienteES6.saludarES6('VicES6')); 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
 
+//Herencia en clases con JavaScript
+/*
+la finalidad de la herencia es precisamente heredar los métodos y propiedades del padre.
+Todos los objetos que extiendan de una Clase padre heredarán sus propiedades y sus métodos.
+Fíjarse en que se llama al constructor del padre mediante super para asignar las propiedades
+de éste, y luego, en cada objeto particular se asignan las propiedades que no están en el padre.
+*/
+
+//     https://es.stackoverflow.com/questions/167596/ejercicio-de-herencia-en-javascript/
+
+class EmpresaES6 extends ClienteES6 {
+    constructor (nombreES6, saldoES6, telefonoES6, tipoES6) {
+        //Heredamos el constructor del padre
+        super (nombreES6, saldoES6);
+        //propiedades que no estan en el padre (propias de esta clase)
+        this.telefonoES6 = telefonoES6;
+        this.tipoES6 = tipoES6
+    }
+
+    static saludarES6 (nombreEmpresaToSaludoES6){
+        this.nombreEmpresaToSaludoES6 = nombreEmpresaToSaludoES6;
+        return `Bienvenido empresa: ${this.nombreEmpresaToSaludoES6}`;
+    }
+
+    verDatos(saldoES6) {
+        this.saldoES6 = saldoES6;
+        console.log(this.saldoES6);
+        return ` ->>> ${this.nombreES6}, saldo: ${this.saldoES6}, tipo: ${this.tipoES6}, TEL: ${this.telefonoES6}`
+    }
+}
+
+const empresita = new EmpresaES6('Mariachi.io', 1000, 250085, 'COnstrucción');
+
+console.log(empresita.verDatos(8500))
+console.log(EmpresaES6.saludarES6('Mariachi.IO'))
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
