@@ -385,6 +385,35 @@ mostrarPaises();
 agregarPais('Irlanda', mostrarPaises) //la funcion es invocada sin "()"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Promesas    ->  https://stackoverflow.com/questions/39369269/nodejs-when-to-use-promises
+/*    
+Si su función es (a veces) asíncrona, debe devolver una promesa.
+Si su función nunca hace nada asíncrono, no hay una buena razón 
+para que le devuelva una promesa, y debe evitarla. Mantenlo simple y sincrónico.
+*/
+
+//La ventaja de las promesas es que a partir de sus estados se pueden manejar acciones a partir un tiempo desconocido en la solicitud de datos p ejemplo.
+
+//Ejemplo sencillo; se manjan dos de los tres estados de una promesa resolve y reject (el estado por defecto es pending)
+
+const aplicarDescuento = new Promise(function(resolve, reject){
+    const descuento = false;
+    if (descuento) {
+        //Estado resuelto
+        resolve('Descuento aplicado');
+    } else {
+        //Estado rechazado; error!
+        reject('No se pudo aplicar el descuento');
+    }
+})
+
+//El estado reject va de la mano con " .then " -> resultado (en este caso) es por defecto el parametro resolve recibido por "then"
+aplicarDescuento.then(function(resultado){
+    console.log(resultado)
+}).catch(function (error) { //-> error (en este caso) es por defecto el parametro reject recibido por "catch"
+    console.log(error)  
+})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
