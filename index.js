@@ -341,6 +341,49 @@ console.log(EmpresaES6.saludarES6('Mariachi.IO'))
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Código Asincrono JS
+//Los callback se ejecutan dentro de la funcion en la cual se les pasa para continuar una serie de rutinas
+//por tanto se pasa como parametro
+
+function sumas(a, b, callback) {
+   let result = a + b; 
+    callback(result); //en este caso, se pasa el resultado comoparametro a la funcion que se ejecutara para continuar la rutina
+}
+
+function resultado(result) {// se pasa el parametro result; para trabajar lo pertinente
+    alert('El resultado es: ' + result)
+}
+
+sumas(7,7, resultado) //se envian los parametros a la funcion suma para que los trabaje
+
+//Otro ejemplo practico de callbacks, simulando nuevos datos que llegan:
+const paises = ['México', 'España', 'Venezuela']
+
+//Agregar un nuevo pais
+function agregarPais(paisNuevo, callback) {
+    setTimeout( function() {
+        paises.push(paisNuevo)
+        callback();
+    }, 3000)
+}
+
+//Mostrar paises
+function mostrarPaises (){
+    setTimeout( function() {
+        let html = '';
+        paises.forEach(function (pais) {
+            console.log(pais)
+            html += `<li>${pais}</li>`;
+        });
+        document.getElementById('app').innerHTML = html;
+    }, 1000 )
+}
+
+mostrarPaises();
+
+//Integrando la funcionalidad de un callback; agregar un nuevo pais y visualizarlo nuevamente en la lista despues de 3 segundos
+agregarPais('Irlanda', mostrarPaises) //la funcion es invocada sin "()"
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
