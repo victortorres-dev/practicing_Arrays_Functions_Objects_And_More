@@ -416,6 +416,49 @@ aplicarDescuento.then(function(resultado){
 })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Sintaxís de las Arrow Functions
+
+//Escritura común de una función:
+let aprendiendo = function() {
+    console.log('Aprendiendo javaScirpt con arrow functions');
+}
+
+aprendiendo();
+
+// Utilizando la sintaxis de una arrow function:
+
+//Una funcion que solo utiliza una linea no requiere las llaves " {} "
+aprendiendoArrow = () => console.log('Aprendiendo javaScirpt con arrow functions (Una sola linea)');
+aprendiendoArrow();
+
+//Retorna valor:
+aprendiendoArrow = () => 'Aprendiendo javaScirpt con arrow functions (Retorna valor)';
+console.log(aprendiendoArrow());
+
+//Retorna un objeto:
+aprendiendoArrow = () => ({aprendiendo: 'Aprendiendo javaScirpt con arrow functions (Retorna Objeto)'})
+console.log(aprendiendoArrow());
+
+//Pase de parametros
+
+//pasando un unico parametro:
+aprendiendoArrow = parametro => `Aprendiendo javaScirpt con arrow functions, pase de paramtro ${parametro}`
+console.log(aprendiendoArrow('paramtrito'));
+
+//pasando más de un parametro:
+aprendiendoArrow = (parametro1, parametro2) => `Aprendiendo javaScirpt con arrow functions, pase de paramtro ${parametro1}, ${parametro2}`
+console.log(aprendiendoArrow('parametro 1', 'parametro 2'));
+
+//  Un ejemplo practico de Arrow functions
+const productos = ['Guitarra', 'Violín', 'Chancla'];
+
+// Usando un callback tradicional
+productos.forEach(function(producto){
+    console.log(producto)
+})
+
+// Usando un callback con arrow functions
+productos.forEach( producto => console.log('forEachArrow: ' + producto))
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
