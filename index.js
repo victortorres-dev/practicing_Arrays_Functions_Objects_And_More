@@ -513,4 +513,16 @@ cargarClientes()
     .catch(error => console.log(error))//y por defecto catch esta esta asociado con el estado "reject" de la promesa
 
 
+//////////////////////////////////////////////
+//Un ejemplo práctico de AsyncAawit    
+
+async function leerTodos(){
+    const respuesta = await fetch('https://jsonplaceholder.typicode.com/todos')
+    const datos = await respuesta.json()
+    return datos
+}
+
+leerTodos()
+    .then(datosUsuarios => console.log(datosUsuarios))
+    .catch(error => console.log(error))
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
