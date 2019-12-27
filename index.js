@@ -461,5 +461,56 @@ productos.forEach(function(producto){
 productos.forEach( producto => console.log('forEachArrow: ' + producto))
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* https://stackoverflow.blog/2019/09/12/practical-ways-to-write-better-javascript/ */
+/* https://www.escuelajavascript.com/funciones-asincronas/ */
+
+//Async Await
+
+/*
+Sí, async / await resuelve un problema en particular que los generadores por sí solos no pueden: 
+la capacidad de esperar algún valor asincrónico dentro de un generador verdadero (uno que arroje
+valores reales, no una rutina que produzca promesas o troncos en un trampolín). Estos trampolines 
+coro son un truco inteligente, pero la sintaxis async / await(espera) permite que estas dos características
+del lenguaje completamente distintas se vuelvan verdaderamente ortogonales. Esto es importante por derecho
+propio, pero también tiene una utilidad inmediata (por ejemplo, transmisiones diferidas más elegantes que usan iteraciones for-of)
+*/
+
+/*tu declaras que parte deba ser asincrona, permitiendo detener ciertas ejecuciones hasta que una promesa por ejemplo, se cumpla; 
+porque simplemente: síncrono simplemente significa que no espera a que se complete algo después de iniciarlo.*/
+
+//await: detiene/espera la ejecucion de cierta parte hasta que (en este caso), un promise haya finalizao o se cumpla
+
+//simulando carga desde el servidor
+
+//esta funcion representa una solicitud de carga de datos, que podria demorar cierto tiempo: por ello conviene manejarla como asincrona
+async function cargarClientes() {
+    /*implemento una promesa para poder manipular los estados resuelto y rechazado; ademas de awit para manipular ciertas
+    ejecuciones que deben darse hasta esperar la respuesta de la promesa*/ 
+    const clientes = new Promise((resolve, reject) => {
+        //simulando carga desde el servidor
+        setTimeout(() => {
+            resolve('AsyncAwait -> Clientes descargados')
+        }, 4000);    
+    })
+
+    const error = false
+
+    if (!error) {
+        //si no ocurren errores generamos una "respuesta" que espere a la promesa "clientes" y la retornamos
+        const respuesta = await clientes
+        return respuesta
+
+    } else {
+        //si ocurrio un error, tambien esperamos por su "estado de error" y lo "interpretamos/capturamos" en el reject de la promesa
+        await Promise.reject('AsyncAwait -> Ocurrio un error...')
+    }
+
+}
+
+//Llamamos a la funcion cargarClientes() que implementa una promesa, por lo tanto obtenemos acceso a sus propiedades then y catch
+cargarClientes()
+    .then(res => console.log(res))//Por defecto then se asocia al estado "resolve" de la promesa
+    .catch(error => console.log(error))//y por defecto catch esta esta asociado con el estado "reject" de la promesa
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
